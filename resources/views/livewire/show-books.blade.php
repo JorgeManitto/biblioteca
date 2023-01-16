@@ -1,7 +1,7 @@
 <div >
 
     <div class="sm:flex">
-        <nav class="sm:w-1/4  p-2">
+        <nav class="sm:w-1/4  p-2" style="width: 18rem;margin: 0 auto">
             <form wire:submit.prevent ="formFilter">
                 <div>
                     <label class="text-black font-bold mb-2 block" for="search">Titulo</label>
@@ -9,8 +9,8 @@
                 </div>
               <div>
                 <label class="text-black font-bold mb-2 block" for="categoria">Categorías</label>
-                <select style="height: 16rem;" multiple wire:model="categoriaFilter" class="form-input w-full border border-slate-300 rounded-md" id="categoria">
-                    <option value="">Todas</option>
+                <select wire:model="categoriaFilter" class="form-input w-full border border-slate-300 rounded-md" id="categoria">
+                    <option value="0">Todas</option>
                     @foreach ($categories as $category)
                         <option value="{{$category->id}}">{{$category->titulo}}</option>
                     @endforeach

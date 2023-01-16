@@ -46,14 +46,17 @@ class ShowBooks extends Component
         })
         ->when($this->categoriaFilter, function ($query)
         {
-           $query->join('book_category', 'books.id', '=', 'book_category.books_id')
-           ->where('book_category.category_id',$this->categoriaFilter)
-            ->select('books.*', 'book_category.category_id')->distinct();
+            if($this->categoriaFilter[0] != 0){
+                $query->join('book_category', 'books.id', '=', 'book_category.books_id')
+                ->whereRaw('FIND_IN_SET('.$this->categoriaFilter.',book_category.category_id)')
+                ->select('books.*', 'book_category.category_id')->distinct();
+            }
         })
         ->when($this->ordenFilter,function($query)
         {
             $query ->orderBy('id', $this->ordenFilter);
         })
+        ->where('estado',2)
         ->paginate(12);
 
 

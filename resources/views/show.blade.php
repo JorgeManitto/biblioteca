@@ -19,7 +19,7 @@
     }
     #canvas_container {
           width: 100%;
-          height: 800px;
+          height: 100%;
           overflow: auto;
     }
     #canvas_container {
@@ -226,28 +226,27 @@ if($book->url){
                 }
             }
         });
-        document.getElementById('zoom_in').addEventListener('click', (e) => {
-            if(myState.pdf == null) return;
-            myState.zoom += 0.2;
-            render();
-        });
-        document.getElementById('zoom_out').addEventListener('click', (e) => {
-            if(myState.pdf == null) return;
-            myState.zoom -= 0.2;
-            render();
-        });
+        document.getElementById('zoom_in').addEventListener('click', zoom_in);
+        document.getElementById('zoom_out').addEventListener('click',zoom_out);
 
 
-        document.getElementById('zoom_in_1').addEventListener('click', (e) => {
+        document.getElementById('zoom_in_1').addEventListener('click',zoom_in);
+        document.getElementById('zoom_out_1').addEventListener('click',zoom_out);
+
+        function zoom_in() {
+            if(myState.zoom < 2){
+                myState.zoom += 0.2;
+                render();
+            }
+        }
+        function zoom_out() {
             if(myState.pdf == null) return;
-            myState.zoom += 0.2;
-            render();
-        });
-        document.getElementById('zoom_out_1').addEventListener('click', (e) => {
-            if(myState.pdf == null) return;
-            myState.zoom -= 0.2;
-            render();
-        });
+            if(myState.zoom > 0.6)
+            {
+                myState.zoom -= 0.2;
+                render();
+            }
+        }
 
         function toggleFullScreen(elem) {
     // ## The below if statement seems to work better ## if ((document.fullScreenElement && document.fullScreenElement !== null) || (document.msfullscreenElement && document.msfullscreenElement !== null) || (!document.mozFullScreen && !document.webkitIsFullScreen)) {

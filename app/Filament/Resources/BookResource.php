@@ -4,7 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\BookResource\Pages;
 use App\Filament\Resources\BookResource\RelationManagers;
-use App\Models\Book;
+use App\Models\book As Book;
 use Filament\Forms;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
