@@ -152,10 +152,11 @@
         </div>
         <div id="canvas_container">
             <canvas id="pdf_renderer" ></canvas>
-            {{-- <div id="handle"></div> --}}
+            <div id="loading" style="color: #fff;">Cargando</div>
         </div>
     </div>
     <script>
+        let count = 0;
         var myState = {
             pdf: null,
             currentPage: 1,
@@ -188,6 +189,10 @@ if($book->url){
                     canvasContext: ctx,
                     viewport: viewport
                 });
+                if(count == 0){
+                    document.getElementById('loading').style.display = "none";
+                }
+                count++;
             });
 
 
